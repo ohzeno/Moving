@@ -107,24 +107,33 @@ export default {
         this.review.content &&
         this.review.rank
       ) {
-        axios({
-          method: "put",
-          url: `http://127.0.0.1:8000/community/${this.$store.state.detailnum}/`,
-          headers: this.$store.getters.config,
-          data: {
-            movie_title: this.review.movie_title,
-            title: this.review.title,
-            content: this.review.content,
-            rank: this.review.rank,
-          },
-        })
-          .then((res) => {
-            this.$store.dispatch("toDetail", res.data.id);
-            this.$router.push({ name: "ReviewDetail" });
+        if (
+          this.review.movie_title.trim() &&
+          this.review.title.trim() &&
+          this.review.content.trim()
+        ) {
+          axios({
+            method: "put",
+            url: `http://127.0.0.1:8000/community/${this.$store.state.detailnum}/`,
+            headers: this.$store.getters.config,
+            data: {
+              movie_title: this.review.movie_title,
+              title: this.review.title,
+              content: this.review.content,
+              rank: this.review.rank,
+            },
           })
-          .catch((err) => {
-            console.log(err);
-          });
+            .then((res) => {
+              this.$store.dispatch("toDetail", res.data.id);
+              this.$router.push({ name: "ReviewDetail" });
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("Please check Movie title");
+            });
+        } else {
+          alert(`There's an empty box`);
+        }
       } else {
         alert(`There's an empty box`);
       }

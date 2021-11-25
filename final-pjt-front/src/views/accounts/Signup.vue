@@ -58,21 +58,29 @@ export default {
   },
   methods: {
     signup: function () {
-      axios({
-        method: "post",
-        url: `${SERVER_URL}/accounts/signup/`,
-        data: this.credentials,
-      })
-        .then((res) => {
-          alert("Congratulate your joining");
-          this.login(res);
+      if (
+        this.credentials.username &&
+        this.credentials.password &&
+        this.credentials.passwordConfirmation
+      ) {
+        axios({
+          method: "post",
+          url: `${SERVER_URL}/accounts/signup/`,
+          data: this.credentials,
         })
-        .catch((err) => {
-          alert(
-            " There was an error processing your signup \n - Email is invalid \n - Username is already taken &nbsp \n - Password and password confirmation do not match"
-          );
-          console.log(err);
-        });
+          .then((res) => {
+            alert("Congratulate your joining");
+            this.login(res);
+          })
+          .catch((err) => {
+            alert(
+              " There was an error processing your signup \n - Username is already taken  \n - Password and password confirmation do not match"
+            );
+            console.log(err);
+          });
+      } else {
+        alert("There is an empty box.");
+      }
     },
     login: function (res) {
       axios({

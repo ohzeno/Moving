@@ -241,20 +241,24 @@ export default {
         });
     },
     make_comment: function () {
-      if (this.my_comment.content.trim()) {
-        axios({
-          method: "post",
-          url: `http://127.0.0.1:8000/community/${this.$store.state.detailnum}/comments/create/`,
-          headers: this.$store.getters.config,
-          data: this.my_comment,
-        })
-          .then(() => {
-            this.my_comment.content = null;
-            this.get_comments();
+      if (this.my_comment.content) {
+        if (this.my_comment.content.trim()) {
+          axios({
+            method: "post",
+            url: `http://127.0.0.1:8000/community/${this.$store.state.detailnum}/comments/create/`,
+            headers: this.$store.getters.config,
+            data: this.my_comment,
           })
-          .catch((error) => {
-            console.log(error);
-          });
+            .then(() => {
+              this.my_comment.content = null;
+              this.get_comments();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          alert(`Please input content.`);
+        }
       } else {
         alert(`Please input content.`);
       }
