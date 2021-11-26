@@ -74,15 +74,15 @@ for i in range(len(df)):
     backdrop_path = df['backdrop_path'][df.index[i]]
     video = df['youtube_link'][df.index[i]]
     # if not Movie.objects.filter(
-    #     title=title,
-    #     overview=overview,
-    #     release_date=release_date,
-    #     runtime=runtime,
-    #     vote_average=vote_average,
-    #     poster_path=poster_path,
-    #     backdrop_path=backdrop_path,
-    #     video=video
-    #     ):
+        # title=title,
+        # overview=overview,
+        # release_date=release_date,
+        # runtime=runtime,
+        # vote_average=vote_average,
+        # poster_path=poster_path,
+        # backdrop_path=backdrop_path,
+        # video=video
+        # ):
     movie,_ = Movie.objects.get_or_create(
         title=title,
         overview=overview,
