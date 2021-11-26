@@ -44,6 +44,7 @@
 $ python -m venv venv
 $ source venv/Scripts/activate
 $ pip install -r requirements.txt
+$ python manage.py migrate
 ```
 
 ### **☑️ 프론트 패키지 설치**
@@ -74,10 +75,16 @@ $ cd ..
 
 > final-pjt-front최상위 폴더에는 .env.local 파일이 작성되어 있으며, 이것은 gitignore로 관리되어 있기 때문에 반드시 해당 파일을 생성하고 프로젝트를 진행하도록 한다.
 > 
-- `.env.local` 파일에는 다음과 같은 데이터가 저장되어 있다.
+- `.env.local` 파일에는 다음과 같은 데이터가 저장되어 있다. 해당 파일을 꼭 만들고 서버를 실행해야 한다.
     - `서버 url`
+    
+      ```
+      VUE_APP_SERVER_URL=http://127.0.0.1:8000
+      ```
+    
+      
 
-`VUE_APP_SERVER_URL=http://127.0.0.1:8000`
+
 
 ## **1 .팀원 정보 및 업무 분담**
 
